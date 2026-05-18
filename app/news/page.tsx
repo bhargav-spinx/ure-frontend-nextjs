@@ -37,7 +37,7 @@ export default async function NewsPage() {
   return (
     <>
       <JsonLd
-        data={breadcrumbJsonLd([
+        data={breadcrumbJsonLd([ 
           { name: "Home", path: "/" },
           { name: "News", path: "/news" },
         ])}
