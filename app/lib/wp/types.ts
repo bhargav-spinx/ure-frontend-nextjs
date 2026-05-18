@@ -145,6 +145,16 @@ export type HomeAcf = {
     description?: string;
     steps?: TitleDescriptionRow[];
   };
+  industries_section?: {
+    title?: string;
+    description?: string;
+    cta_label?: string;
+    cta_href?: string;
+    items?: {
+      label?: string;
+      select_image?: AcfImage;
+    }[];
+  };
   cta_section?: CtaSection;
 };
 
@@ -288,6 +298,12 @@ export type ContactAcf = {
 };
 
 export type StaticMessageAcf = {
+  eyebrow?: string;
+  body?: string;
+  icon?: AcfImage;
+  cta_label?: string;
+  cta_href?: string;
+  /** Long-form HTML — used by the news-detail-style pages (privacy, do-not-sell-my-info). */
   description?: string;
 };
 

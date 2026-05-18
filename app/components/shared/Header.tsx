@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import SiteLogo from "@/app/components/shared/SiteLogo";
 
 const NAV = [
   { label: "About",      href: "/about",      key: "about" },
@@ -11,6 +12,11 @@ const NAV = [
   { label: "News",       href: "/news",       key: "news" },
   { label: "Contact",    href: "/contact",    key: "contact" },
 ];
+
+// Hero-driven routes that get the transparent/dark header. Everything else
+// (CMS pages, news list + post detail, utility pages, 404) gets the light
+// variant — they sit on cream/white backgrounds.
+const DARK_HEADER_PATHS = new Set(["/", "/about", "/technology", "/market"]);
 
 export default function Header() {
   const pathname = usePathname() ?? "/";
@@ -28,20 +34,14 @@ export default function Header() {
     }
   }, [open]);
 
-  const isLight = pathname === "/contact" || pathname === "/news" || pathname.startsWith("/news-detail");
+  const isLight = !DARK_HEADER_PATHS.has(pathname);
 
   return (
     <header className={`site-header${isLight ? " site-header--light" : ""}`} role="banner">
       <div className="container">
         <nav className="navbar navbar-expand-lg p-0 justify-content-between">
           <Link href="/" className="navbar-brand p-0" aria-label="United Rare Earths">
-            <img
-              src="/images/upload/ure-logo.svg"
-              alt="United Rare Earths"
-              className="site-logo"
-              width={180}
-              height={29}
-            />
+            <SiteLogo />
           </Link>
 
           <div className="menu-wrapper">

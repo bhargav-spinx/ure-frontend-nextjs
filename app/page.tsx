@@ -13,6 +13,7 @@ import HpSeparation from "@/app/components/home/HpSeparation";
 import HpCapabilities from "@/app/components/home/HpCapabilities";
 import HpHeavyRe from "@/app/components/home/HpHeavyRe";
 import HpSupplyChain from "@/app/components/home/HpSupplyChain";
+import HpIndustries from "@/app/components/home/HpIndustries";
 
 export const revalidate = 60;
 
@@ -41,6 +42,7 @@ export default async function HomePage() {
       <HpCapabilities  data={acf?.capabilities_section} />
       <HpHeavyRe       data={acf?.heavy_re_focus_section} />
       <HpSupplyChain   data={acf?.supply_chain_section} />
+      <HpIndustries    data={acf?.industries_section} />
       <CmnCta {...(acf?.cta_section ?? {})} />
     </>
   );
