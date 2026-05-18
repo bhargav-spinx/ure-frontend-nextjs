@@ -1,0 +1,66 @@
+// ═══════════════════════════════════════════════════════════════
+// Accordion — .ure-accordion (Bootstrap accordion restyled)
+// ═══════════════════════════════════════════════════════════════
+
+.ure-accordion {
+  .accordion-item {
+    border: none;
+    border-bottom: 1px solid var(--neutral-100);
+    background: transparent;
+    border-radius: 0;
+
+    &:last-child { border-bottom: none; }
+  }
+
+  .accordion-button {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 500;
+    color: var(--color-text-dark);
+    background: transparent;
+    padding: var(--space-md) 0;
+    box-shadow: none;
+    border-radius: 0;
+
+    &:not(.collapsed) {
+      color: var(--color-copper);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    &::after {
+      background-image: none;
+      content: '+';
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 300;
+      width: auto;
+      height: auto;
+      color: var(--color-copper);
+      transition: transform var(--duration-fast) var(--ease-out);
+    }
+
+    &:not(.collapsed)::after {
+      content: '−';
+      transform: none;
+    }
+  }
+
+  .accordion-body {
+    padding: 0 0 var(--space-md);
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    color: var(--neutral-600);
+  }
+}
+
+.bg-dark .ure-accordion {
+  .accordion-item { border-color: var(--neutral-700); }
+
+  .accordion-button {
+    color: var(--color-cream);
+    &:not(.collapsed) { color: var(--color-copper-light); }
+  }
+
+  .accordion-body { color: var(--neutral-300); }
+}

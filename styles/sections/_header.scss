@@ -1,0 +1,380 @@
+// ═══════════════════════════════════════════════════════════════
+// Site Header — unified responsive nav (Bootstrap navbar-expand-lg)
+// Desktop: floating glass pill on the right of the header bar
+// Mobile : hamburger → full-screen offcanvas drawer
+// ═══════════════════════════════════════════════════════════════
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  height: 90px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+
+  // Inline-SVG logo colors — overridden per variant (Figma 14822:14626 / 10927:14722).
+  // Dark variant: gold shield + white wordmark.
+  // Light variant: copper-dark shield + near-black wordmark.
+  --logo-shield-color: #E9A54C;
+  --logo-text-color:   #ffffff;
+
+  &--light {
+    --logo-shield-color: #BC5128;
+    --logo-text-color:   #1a1a1a;
+  }
+
+  // When the mobile drawer opens over a light page, the logo sits on the dark
+  // drawer (z-index). Keep the shield in its light-variant copper, but flip
+  // the wordmark to white so it stays readable.
+  &--light:has(.offcanvas-lg.show) {
+    --logo-text-color: #ffffff;
+  }
+
+  .site-logo__shield path   { fill: var(--logo-shield-color); }
+  .site-logo__wordmark path { fill: var(--logo-text-color); }
+  transition: height var(--duration-base) var(--ease-out);
+  pointer-events: none; // let the hero/page handle pointer events outside nav
+
+  // Backdrop sits on a pseudo-element so backdrop-filter can't create a CSS
+  // containing block on .site-header itself — otherwise the offcanvas-lg
+  // drawer (position: fixed) would be trapped inside the 90px header zone.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: transparent;
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+    transition: background-color var(--duration-base) var(--ease-out),
+                backdrop-filter   var(--duration-base) var(--ease-out);
+    pointer-events: none;
+  }
+
+  // Once the page is scrolled, shrink to 70px and fade in the backdrop.
+  &.is-scrolled {
+    height: 70px;
+
+    &::before {
+      background-color: rgba(26, 26, 26, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+  }
+
+  // Mobile/tablet: header is 70px by default (matches the scrolled state)
+  @include media-down(lg) {
+    height: 70px;
+  }
+
+  &--light.is-scrolled::before {
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+
+  > .container,
+  .navbar,
+  .navbar-brand,
+  .menu-wrapper {
+    pointer-events: auto;
+  }
+
+  > .container {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar {
+    width: 100%;
+  }
+
+  .navbar-brand,
+  .site-logo {
+    max-width: 180px;
+    width: auto;
+    display: block;
+  }
+
+  // Keep the site logo visible above the offcanvas backdrop on mobile
+  .navbar-brand {
+    position: relative;
+    z-index: 1060;
+  }
+}
+
+// ─── Desktop: glass pill containing the inline menu ───────────────
+@include media-up(lg) {
+  .site-header {
+    .offcanvas-lg.navbar-collapse {
+      // Glass pill aligned to the right of the header bar (Figma 14822:14626).
+      // Horizontal padding lives on the pill; vertical padding lives on
+      // .nav-link so each link is a full-height clickable strip.
+      // Bootstrap 5.3 forces `background-color: transparent !important` and
+      // `border-*-width: 0 !important` on .offcanvas-lg at lg+, so we need
+      // !important to win the cascade.
+      flex-grow: 0;
+      padding: 0 20px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.2) !important;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .offcanvas-body {
+      padding: 0;
+      flex-grow: 0;
+    }
+
+    .navbar-nav {
+      flex-direction: row;
+      align-items: stretch;
+      gap: 48px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      display: flex;
+      padding: 0;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 16px 0 !important;
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: 0;
+      color: #fff;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: color var(--duration-fast) var(--ease-out);
+
+      &:hover,
+      &.active,
+      &[aria-current="page"],
+      .active > &,
+      .current-menu-item > &,
+      .current_page_item > & {
+        color: var(--color-copper-light);
+      }
+    }
+
+    .navbar-toggler {
+      display: none;
+    }
+  }
+}
+
+// ─── Mobile: hamburger toggler (only visible below lg) ───────────
+@include media-down(lg) {
+  .site-header .navbar-toggler {
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 10px 12px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+      position: relative;
+        z-index: 1063;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    .toggler-bar {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--color-cream);
+      border-radius: 2px;
+      transition:
+        transform var(--duration-fast) var(--ease-out),
+        opacity var(--duration-fast) var(--ease-out);
+    }
+
+    &[aria-expanded="true"] {
+      .toggler-bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .toggler-bar:nth-child(2) {
+        opacity: 0;
+      }
+      .toggler-bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+    }
+  }
+
+  // Also rotate when the drawer is shown but Bootstrap didn't flip aria-expanded
+  .site-header .menu-wrapper:has(.offcanvas-lg.show) .navbar-toggler {
+    .toggler-bar:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .toggler-bar:nth-child(2) {
+      opacity: 0;
+    }
+    .toggler-bar:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+}
+
+// ─── Mobile: offcanvas drawer styling ─────────────────────────────
+@include media-down(lg) {
+  .site-header .offcanvas-lg.offcanvas-end {
+    // Tablet portrait: ~360px drawer slides in from right
+    --bs-offcanvas-width: 360px;
+    background-color: var(--color-dark);
+    border: none;
+    color: var(--color-cream);
+
+    .offcanvas-body {
+      // Top padding reserves the 70px mobile site-header zone so items start
+      // below the floating logo + toggler. Horizontal padding mirrors the
+      // header's .container gutter so menu items line up under the logo.
+      padding: calc(70px + var(--space-md)) calc(var(--bs-gutter-x, 1.5rem) * .5) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .navbar-nav {
+      flex-direction: column;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      gap: 0;
+      flex-grow: 1; // lets the contact item push to the bottom via margin-top:auto
+    }
+
+    .nav-item {
+      border-bottom: 1px solid var(--neutral-800);
+    }
+
+    .nav-link {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--color-cream);
+      padding: var(--space-sm) 0;
+      text-transform: none;
+      letter-spacing: 0;
+      transition: color var(--duration-fast) var(--ease-out);
+
+      &:hover,
+      &.active,
+      &[aria-current="page"],
+      .active > &,
+      .current-menu-item > &,
+      .current_page_item > & {
+        color: var(--color-copper-light);
+      }
+    }
+
+    // ─── Contact menu item → outlined CTA button at the bottom ──
+    .nav-item-contact {       // push to the bottom of the flex-column ul
+      padding-top: var(--space-xl);
+      border-bottom: none;
+
+      .nav-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1rem 1.25rem;
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-cream);
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 0;
+        transition: background var(--duration-fast) var(--ease-out),
+                    color var(--duration-fast) var(--ease-out),
+                    border-color var(--duration-fast) var(--ease-out);
+
+        &:hover,
+        &.active,
+        &[aria-current="page"] {
+          background: var(--color-cream);
+          color: var(--color-dark);
+          border-color: var(--color-cream);
+        }
+      }
+    }
+  }
+}
+
+// ─── Below iPad portrait (< 768px): full-width drawer ────────────
+@include media-down(md) {
+  .site-header .offcanvas-lg.offcanvas-end {
+    --bs-offcanvas-width: 100vw;
+    width: 100vw;
+    max-width: 100vw;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Light variant — for pages with a light/cream background
+// Activated when $logo_variant === 'dark' in the calling template,
+// which adds .site-header--light to the <header>.
+// Figma reference: node 10927:14477
+// ═══════════════════════════════════════════════════════════════
+@include media-up(lg) {
+  .site-header--light {
+    .offcanvas-lg.navbar-collapse {
+      background-color: #fff !important;
+    }
+
+    .nav-link {
+      color: var(--color-dark, #1a1a1a);
+
+      &:hover,
+      &.active,
+      &[aria-current="page"],
+      .active > &,
+      .current-menu-item > &,
+      .current_page_item > & {
+        color: var(--color-copper);
+      }
+    }
+  }
+}
+
+// Light variant on mobile: keep the dark drawer, but the floating toggler
+// sits on a light page background — invert its colors for visibility.
+@include media-down(lg) {
+  .site-header--light .navbar-toggler {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(26, 26, 26, 0.2);
+
+    .toggler-bar { background: var(--color-dark, #1a1a1a); }
+  }
+
+  // Once the drawer opens, the toggler is painted over the dark drawer via
+  // z-index — flip it back to the dark style so it blends in.
+  .site-header--light .menu-wrapper:has(.offcanvas-lg.show) .navbar-toggler {
+    background: rgba(26, 26, 26, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+
+    .toggler-bar { background: var(--color-cream); }
+  }
+}

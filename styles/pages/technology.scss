@@ -1,0 +1,606 @@
+@import "../main.scss";
+
+// ─── Components used on this page ──────────────────────────────
+@import "../components/cmn-buttons";
+@import "../components/cmn-banner";
+@import "../components/cmn-heavy-re-focus";
+@import "../components/cmn-cta";
+@import "../components/cmn-landscape";
+@import "../components/cmn-accordion";
+@import "../components/cmn-cards";
+@import "../components/cmn-stake";
+
+// ═══════════════════════════════════════════════════════════════
+// Technology Page — Styles (Figma 13029:14896)
+// ═══════════════════════════════════════════════════════════════
+
+// ─── Tech Process — Separation + Why we focus + Cards (Figma 14829:25203) ──
+.tech-process {
+  padding: 0 0 112px;
+  display: flex;
+  flex-direction: column;
+  gap: 112px;
+
+  > .container {
+    display: flex;
+    flex-direction: column;
+    gap: 112px;
+  }
+
+  // Shared spec block — used in lead specs + card specs
+  &__specs,
+  &__card-specs {
+    margin: 8px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Light-context spec rows (cards on cream) — Figma 14824:19982 / 14824:23932
+  &__card-specs .tech-process__spec {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 16px 0;
+    border-top: 1px solid var(--neutral-100);
+
+    &:last-child { border-bottom: none; }
+
+    dt { flex: 0 0 auto; width: 150px; }
+    dd { flex: 0 0 auto; font-size: 14px; color: var(--color-dark); }
+  }
+
+  &__spec {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 0;
+
+    dt {
+      flex: 0 0 174px;
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: #7da3a7;
+      margin: 0;
+    }
+
+    dd {
+      flex: 1 1 auto;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.3;
+      margin: 0;
+    }
+  }
+
+  // ── Lead: full-bleed dark, copy left, graphic right ──
+  &__lead {
+    background: var(--color-dark);
+    padding-block: 96px;
+    width: 100%;
+  }
+
+  &__lead-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+  }
+
+  &__lead-copy {
+    flex: 0 1 626px;
+    max-width: 626px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    margin: 0;
+
+    span { color: #e9a54c; }
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin: 0;
+  }
+
+  &__body {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--neutral-200);
+    margin: 0;
+  }
+
+  // Lead spec rows on dark — different border + value color
+  &__specs &__spec {
+    border-top: 1px solid var(--neutral-700);
+    &:last-child { border-bottom: 1px solid var(--neutral-700); }
+    dd { color: #fff; }
+  }
+
+  &__lead-graphic {
+    flex: 0 0 578px;
+    width: 578px;
+    height: 567px;
+    position: relative;
+    overflow: hidden;
+    background: var(--color-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__lead-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  &__lead-blend {
+    position: absolute;
+    inset: 0;
+    background: #1A1A1A;
+    mix-blend-mode: color;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &__lead-dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.7);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  &__lead-icon {
+    position: relative;
+    z-index: 4;
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+  }
+
+  // ── Why we focus on heavy rare earths ──
+  &__why {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 64px;
+  }
+
+  &__why-copy {
+    flex: 0 1 632px;
+    max-width: 632px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__why-top {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__why-title {
+    font-family: var(--font-heading);
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--color-dark);
+    margin: 0;
+  }
+
+  &__why-intro {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--color-dark);
+    margin: 0;
+  }
+
+  &__why-rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__why-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 32px 0;
+    border-top: 1px solid var(--neutral-100);
+
+    &:last-child { border-bottom: 1px solid var(--neutral-100); }
+  }
+
+  &__why-label {
+    flex: 0 0 200px;
+    width: 200px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--color-copper);
+    margin: 0;
+  }
+
+  &__why-body {
+    flex: 1 1 0;
+    min-width: 0;
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--color-dark);
+    margin: 0;
+  }
+
+  &__why-visual {
+    flex: 0 0 577px;
+    width: 577px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 40px;
+
+    .heavy-re-focus__panel {
+      width: 100%;
+      height: 310.696px;
+    }
+  }
+
+  // ── Cards: Refining + Magnet Recycling ──
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__card {
+    background: #fff;
+    display: flex;
+    align-items: flex-start;
+    gap: 76px;
+    padding: 48px 40px 96px;
+  }
+
+  &__card-icon {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+
+    img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  }
+
+  &__card-copy {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--color-accent-orange);
+    margin: 0 0 6px;
+  }
+
+  &__card-title {
+    font-family: var(--font-heading);
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-dark);
+    margin: 0;
+  }
+
+  &__card-body {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--color-dark);
+    margin: 0;
+  }
+
+  &__card-specs {
+    flex: 0 0 408px;
+    width: 408px;
+    margin: 0;
+  }
+
+  // ── Responsive ──
+  @media (max-width: 1199.98px) {
+    gap: 96px;
+    padding: 0 0 96px;
+
+    &__lead { padding-block: 64px; }
+    &__lead-inner { gap: 40px; }
+    &__lead-graphic { flex: 0 0 360px; width: 360px; height: 400px; }
+    &__title { font-size: 38px; }
+
+    &__why { gap: 40px; }
+    &__why-visual { flex: 0 0 460px; width: 460px; }
+
+    &__card { gap: 40px; padding: 40px 32px 64px; }
+    &__card-specs { flex: 0 0 320px; width: 320px; }
+  }
+
+  @media (max-width: 991.98px) {
+    gap: 64px;
+
+    &__lead { padding-block: 48px; }
+    &__lead-inner {
+      flex-direction: column;
+      gap: 32px;
+    }
+    &__lead-copy { flex: 1 1 auto; max-width: 100%; }
+    &__lead-graphic { flex: 1 1 auto; width: 100%; height: 320px; }
+    &__title { font-size: 32px; }
+
+    &__why {
+      flex-direction: column;
+      gap: 32px;
+    }
+    &__why-copy { flex: 1 1 auto; max-width: 100%; }
+    &__why-title { font-size: 32px; }
+    &__why-visual { flex: 1 1 auto; width: 100%; align-items: stretch; }
+
+    &__card {
+      flex-direction: column;
+      gap: 24px;
+      padding: 32px 24px 48px;
+    }
+    &__card-copy { flex: 1 1 auto; max-width: 100%; }
+    &__card-specs { flex: 1 1 auto; width: 100%; }
+  }
+
+  @media (max-width: 575.98px) {
+    &__title { font-size: 28px; }
+    &__why-title { font-size: 26px; }
+    &__card-title { font-size: 30px; }
+
+    &__why-row { flex-direction: column; gap: 12px; padding: 24px 0; }
+    &__why-label { flex: 1 1 auto; width: 100%; }
+
+    &__spec { flex-direction: column; align-items: flex-start; gap: 4px; }
+    &__spec dt { flex: 1 1 auto; }
+  }
+}
+
+
+// ─── Built on national laboratory science (Figma 13029:14932) ─
+.tech-ornl-lab {
+  &__inner {
+    display: flex;
+    align-items: stretch;
+    gap: 114px;
+    width: 100%;
+  }
+
+  &__image {
+    flex: 0 0 342px;
+    width: 342px;
+    height: 357px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  &__body-wrap {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  &__divider {
+    flex-shrink: 0;
+    width: 1px;
+    background: var(--neutral-200);
+    align-self: stretch;
+  }
+
+  &__body {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--color-dark);
+    margin: 0;
+  }
+
+  &__copy {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--color-dark);
+
+    p { margin-bottom: 24px; &:last-child { margin-bottom: 0; } }
+  }
+
+  @media (max-width: 1199.98px) {
+    &__inner { gap: 64px; }
+    &__title { font-size: 38px; }
+  }
+
+  @media (max-width: 991.98px) {
+    &__inner { flex-direction: column; gap: 32px; }
+    &__image { flex: 1 1 auto; width: 100%; height: auto; aspect-ratio: 16 / 10; }
+    &__body { max-width: 100%; }
+    &__body-wrap { flex-direction: column; gap: 24px; }
+    &__divider { width: 100%; height: 1px; }
+    &__title { font-size: 32px; }
+  }
+}
+
+// ─── FAQ — Figma 10987:28758 ─────────────────────────────────
+.tech-faq-section {
+  &__inner {
+    max-width: 864px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__title {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--color-eyebrow-teal);
+    margin: 0;
+  }
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.faq-acc-item {
+  border: 1px solid var(--neutral-200);
+  margin-top: -1px;
+  background: transparent;
+  transition: background-color var(--duration-fast) var(--ease-out);
+
+  &:first-child { margin-top: 0; }
+
+  &.is-open {
+    background: rgba(255, 255, 255, 0.4);
+
+    .faq-acc-body { display: block; }
+
+    .faq-acc-icon::before { transform: translate(-50%, -50%) rotate(0deg); }
+    .faq-acc-icon::after  { transform: translate(-50%, -50%) rotate(0deg); opacity: 0; }
+  }
+}
+
+.faq-acc-trigger {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 32px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  cursor: pointer;
+  text-align: left;
+
+  &:hover .faq-acc-question { color: var(--color-copper); }
+}
+
+.faq-acc-question {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-dark);
+  margin: 0;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.faq-acc-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  font-size: 0;
+  color: transparent;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 1.5px;
+    background: var(--color-dark);
+    transition: transform var(--duration-fast) var(--ease-out),
+                opacity var(--duration-fast) var(--ease-out);
+  }
+
+  &::before { transform: translate(-50%, -50%) rotate(0deg); }
+  &::after  { transform: translate(-50%, -50%) rotate(90deg); }
+}
+
+.faq-acc-body {
+  display: none;
+  padding: 0 20px 32px;
+  max-width: 760px;
+
+  p {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--color-dark);
+    margin: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .faq-acc-trigger { padding: 24px 16px; }
+  .faq-acc-question { font-size: 20px; }
+  .faq-acc-body { padding: 0 16px 24px; }
+}

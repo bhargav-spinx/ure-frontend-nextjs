@@ -1,0 +1,160 @@
+// ═══════════════════════════════════════════════════════════════
+// Common Hero Banner — .cmn-banner
+// ═══════════════════════════════════════════════════════════════
+
+.cmn-banner {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 40px;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(26, 26, 26, 0.25) 0%,
+      rgba(26, 26, 26, 0.55) 50%,
+      rgba(26, 26, 26, 0.88) 100%
+    );
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content { max-width: 800px; }
+
+  .display,
+  h1 {
+    color: var(--color-cream);
+    margin-bottom: var(--space-lg);
+
+    span {
+      display: block;
+      overflow: hidden;
+    }
+  }
+
+  .eyebrow { color: var(--color-copper-light); }
+
+  &__subhead {
+    color: var(--neutral-200);
+    margin-bottom: var(--space-lg);
+    line-height: 1.35;
+  }
+
+  &__cta { margin-top: 0; }
+
+  &__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 0;
+  }
+
+  &__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  &__scroll-line {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--color-copper) 0%, transparent 100%);
+  }
+
+  // Inner page variant — shorter, headline sits flush against next section
+  &--inner {
+    min-height: 700px;
+    align-items: flex-end;
+    padding-bottom: 0;
+  }
+
+  &__headline {
+    font-family: var(--font-heading);
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: var(--color-cream);
+    margin-bottom: 0;
+  }
+
+  // Home hero — right-side copy panel
+  &__side {
+    padding-bottom: 0.25rem;
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+  50%      { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+}
+
+@include media-down(lg) {
+  .cmn-banner--inner { min-height: 600px; }
+}
+
+@include media-down(md) {
+  .cmn-banner {
+    min-height: auto;
+    padding-top: 120px;
+    padding-bottom: 48px;
+
+    &__content { max-width: 100%; }
+
+    .row { --bs-gutter-y: 1.25rem; }
+
+    .display,
+    h1 {
+      font-size: clamp(1.75rem, 7vw, 2.25rem);
+      margin-bottom: var(--space-md);
+    }
+
+    &__side { padding-bottom: 0; }
+
+    &__subhead {
+      font-size: 0.9375rem;
+      margin-bottom: var(--space-md);
+    }
+
+    &__ctas {
+      gap: 8px;
+
+      .btn-ghost-light {
+        flex: 1 1 auto;
+        padding: 0.75rem 1rem;
+        font-size: 0.8125rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .cmn-banner--inner {
+    min-height: 420px;
+    padding-top: 90px;
+
+    .cmn-banner__headline { font-size: 1.75rem; }
+  }
+}

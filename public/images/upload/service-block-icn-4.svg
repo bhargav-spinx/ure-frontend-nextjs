@@ -1,0 +1,16 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.15">
+<path d="M0 20H120" stroke="black"/>
+<path d="M0 40H120" stroke="black"/>
+<path d="M0 60H120" stroke="black"/>
+<path d="M0 80H120" stroke="black"/>
+<path d="M0 100H120" stroke="black"/>
+<path d="M20 120L20 -2.98023e-08" stroke="black"/>
+<path d="M40 120L40 -2.98023e-08" stroke="black"/>
+<path d="M60 120L60 -2.98023e-08" stroke="black"/>
+<path d="M80 120L80 -2.98023e-08" stroke="black"/>
+<path d="M100 120L100 -2.98023e-08" stroke="black"/>
+</g>
+<path d="M19.8672 59.507L59.5036 45.4141L99.1401 59.507L59.5036 73.6L19.8672 59.507Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M59.5036 19.8672L19.8672 59.5036L59.5036 99.1401M59.5036 19.8672L99.1401 59.5036L59.5036 99.1401M59.5036 19.8672V99.1401" stroke="black" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

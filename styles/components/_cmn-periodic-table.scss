@@ -1,0 +1,50 @@
+// ═══════════════════════════════════════════════════════════════
+// Periodic Table — shared grid used on home + technology
+// (Detailed element and tab/legend styles are in
+//  pages/home.scss and pages/technology.scss.)
+// ═══════════════════════════════════════════════════════════════
+
+.ptable-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.ptable {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  grid-template-rows: repeat(7, auto) 12px repeat(2, auto);
+  gap: 2px;
+}
+
+.pt-el {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  background-color: var(--neutral-100);
+  color: var(--neutral-600);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  transition: background-color var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
+
+  &__num  { font-size: 0.5rem; line-height: 1; opacity: 0.7; }
+  &__sym  { font-family: var(--font-heading); font-size: 0.875rem; font-weight: 500; }
+  &__name { display: none; font-size: 0.5rem; }
+
+  &--placeholder {
+    background-color: transparent;
+    color: var(--neutral-400);
+    font-size: 0.625rem;
+    border: 1px dashed var(--neutral-200);
+  }
+}
+
+// Group highlight — when .ptable has data-active="heavy" or "light"
+.ptable[data-active="heavy"] .pt-el--re_heavy,
+.ptable[data-active="light"] .pt-el--re_light {
+  background-color: var(--color-copper);
+  color: #fff;
+}

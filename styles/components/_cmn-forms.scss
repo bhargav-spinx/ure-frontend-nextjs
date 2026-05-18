@@ -1,0 +1,54 @@
+// ═══════════════════════════════════════════════════════════════
+// Forms — .ure-form (shared form base)
+// ═══════════════════════════════════════════════════════════════
+
+.ure-form {
+  .form-group { margin-bottom: var(--space-md); }
+
+  label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--neutral-500);
+    margin-bottom: var(--space-xs);
+    display: block;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--neutral-200);
+    padding: 0.75rem 0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    border-radius: 0;
+    transition: border-color var(--duration-fast) var(--ease-out);
+    appearance: none;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-copper);
+    }
+
+    &::placeholder { color: var(--neutral-400); }
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10L6 8z' fill='%2396928C'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    padding-right: 1.5rem;
+  }
+}

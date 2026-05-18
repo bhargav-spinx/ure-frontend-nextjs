@@ -1,0 +1,67 @@
+// ═══════════════════════════════════════════════════════════════
+// Shared card component — .ure-card
+// ═══════════════════════════════════════════════════════════════
+
+.ure-card {
+  padding: var(--space-lg);
+  border-radius: $radius-sm;
+  height: 100%;
+  transition: transform var(--duration-base) var(--ease-out),
+              box-shadow var(--duration-base) var(--ease-out);
+
+  &:hover { transform: translateY(-4px); }
+
+  .card-number {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-copper);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+    display: block;
+  }
+
+  .card-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: var(--space-sm);
+  }
+
+  .card-body-text {
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    color: var(--color-text-muted);
+  }
+}
+
+.ure-card.card-on-dark {
+  background-color: var(--neutral-800);
+  border: 1px solid var(--neutral-700);
+
+  .card-title { color: var(--color-cream); }
+  .card-body-text { color: var(--neutral-300); }
+
+  &:hover {
+    border-color: var(--color-copper);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.ure-card.card-on-light {
+  background-color: #fff;
+  border: 1px solid var(--neutral-100);
+
+  .card-title { color: var(--color-dark); }
+  .card-body-text { color: var(--neutral-600); }
+
+  &:hover {
+    border-color: var(--color-copper);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@include media-down(md) {
+  .ure-card { padding: var(--space-md); }
+}

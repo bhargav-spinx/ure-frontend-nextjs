@@ -1,0 +1,26 @@
+// ═══════════════════════════════════════════════════════════════
+// Scroll Progress — fixed top-of-page indicator
+// JS in assets/js/web.js sets the scaleX based on scroll position.
+// ═══════════════════════════════════════════════════════════════
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  z-index: 1100;
+  pointer-events: none;
+
+  &__bar {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--color-copper);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 60ms linear;
+    will-change: transform;
+  }
+}

@@ -1,0 +1,459 @@
+@import "../main.scss";
+
+// Select2 vendor stylesheet removed — Tier 3 port uses a native React form
+// (see app/components/contact/ContactForm.tsx) with custom select styling
+// inherited from cmn-forms. Original SCSS imported select2.min.css here.
+
+// ─── Components used on this page ──────────────────────────────
+@import "../components/cmn-buttons";
+@import "../components/cmn-forms";
+@import "../components/cmn-stake";
+
+// ═══════════════════════════════════════════════════════════════
+// Contact Page — Styles
+// ═══════════════════════════════════════════════════════════════
+
+// ─── Contact Section (no banner — offset for floating logo) ───
+.contact-section {
+  padding-top: calc(var(--header-height) + var(--section-py));
+}
+
+// ─── Contact Info ──────────────────────────────────────────────
+.contact-info-item {
+  &__label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-copper);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  &__value {
+    font-size: 0.9375rem;
+    color: var(--neutral-600);
+    line-height: 1.6;
+    font-style: normal;
+
+    a {
+      color: var(--color-dark);
+      &:hover { color: var(--color-copper); }
+    }
+  }
+}
+
+.contact-topics-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-size: 0.875rem;
+    color: var(--neutral-600);
+    padding: 4px 0;
+    padding-left: var(--space-sm);
+    position: relative;
+
+    &::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--color-copper);
+      font-size: 0.75rem;
+    }
+  }
+}
+
+// ─── Contact Form ──────────────────────────────────────────────
+.contact-form {
+  &__field {
+    margin-bottom: 0;
+  }
+
+  &__label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--neutral-500);
+    display: block;
+    margin-bottom: 8px;
+
+    span { color: var(--color-copper); }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--neutral-200);
+    border-radius: 0;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-dark);
+    transition: border-color var(--duration-fast) var(--ease-out);
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+
+    &:focus {
+      border-color: var(--color-copper);
+    }
+
+    &::placeholder {
+      color: var(--neutral-400);
+    }
+  }
+
+  &__select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2396928C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  &__textarea {
+    resize: vertical;
+    height: 140px;
+  }
+
+  &__feedback {
+    font-size: 0.875rem;
+    line-height: 1.5;
+
+    &.success { color: #2a7d4f; }
+    &.error   { color: #c0392b; }
+  }
+}
+
+// ─── Gravity Forms — match original .contact-form design ──────
+.contact-form-wrap {
+  .gform_wrapper {
+    // GF renders .gform_fields as a <ul> — kill native list styles.
+    .gform_fields {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .gfield {
+      grid-column: span 12;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      &::before,
+      &::marker { content: none; display: none; }
+    }
+
+    // Hide the honeypot anti-spam field
+    .gform_validation_container,
+    .gfield--type-honeypot,
+    li.gform_validation_container { display: none !important; }
+
+    @media (min-width: 768px) {
+      .gfield.gf-col-6  { grid-column: span 6;  }
+      .gfield.gf-col-12 { grid-column: span 12; }
+    }
+
+    // Label — mono, small, uppercase, neutral-500 with copper asterisk
+    .gfield_label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--neutral-500);
+      display: block;
+      margin: 0 0 8px;
+
+      .gfield_required,
+      .gfield_required_asterisk,
+      .gfield_required_text {
+        color: var(--color-copper);
+        margin-left: 2px;
+      }
+    }
+
+    // Input wrapper inside .gfield
+    .ginput_container {
+      margin: 0;
+    }
+
+    // Inputs / select / textarea — white bg, neutral border, copper focus
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="number"],
+    select,
+    textarea {
+      display: block;
+      width: 100%;
+      background: #fff;
+      border: 1px solid var(--neutral-200);
+      border-radius: 0;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.4;
+      color: var(--color-dark);
+      transition: border-color var(--duration-fast) var(--ease-out);
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      box-shadow: none;
+
+      &:focus { border-color: var(--color-copper); }
+
+      &::placeholder { color: var(--neutral-400); }
+    }
+
+    // Native select — custom dropdown chevron
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2396928C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    // ─── Select2 — make the enhanced UI match the native select above ─
+    // Select2 replaces the <select> with its own markup, so every native
+    // style above is bypassed. Re-skin its container/dropdown to look
+    // identical: same border, padding, font, copper focus, custom chevron.
+    .select2-container--default {
+      width: 100% !important; // GF wrapper sometimes hard-sets a smaller width
+    }
+
+    .select2-container--default .select2-selection--single {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #fff;
+      border: 1px solid var(--neutral-200);
+      border-radius: 0;
+      padding: 0.75rem 2.5rem 0.75rem 1rem; // room for the chevron on the right
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.4;
+      color: var(--color-dark);
+      transition: border-color var(--duration-fast) var(--ease-out);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .select2-container--default.select2-container--open .select2-selection--single,
+    .select2-container--default.select2-container--focus .select2-selection--single {
+      border-color: var(--color-copper);
+      box-shadow: none;
+    }
+
+    // Selected text — strip Select2's own padding/line-height so it sits
+    // on the same baseline as input/textarea text.
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+      padding: 0;
+      line-height: 1.4;
+      color: var(--color-dark);
+    }
+
+    // Placeholder colour matches native ::placeholder.
+    .select2-container--default .select2-selection--single .select2-selection__placeholder {
+      color: var(--neutral-400);
+    }
+
+    // Hide Select2's default chevron and reuse the SVG chevron from the
+    // native select so the visual is pixel-identical when collapsed.
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+      top: 0;
+      right: 0;
+      width: 2.5rem;
+      height: 100%;
+
+      b { display: none; }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        width: 12px;
+        height: 8px;
+        transform: translateY(-50%);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2396928C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    // Submit — mirror .btn / .btn-dark
+    .gform_footer {
+      margin-top: 1.5rem;
+      padding: 0;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .gform_button {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--color-dark);
+      border: 1px solid var(--color-dark);
+      border-radius: 0;
+      padding: 0.875rem 2rem;
+      cursor: pointer;
+      transition: background var(--duration-base) var(--ease-out),
+                  color      var(--duration-base) var(--ease-out),
+                  border-color var(--duration-base) var(--ease-out);
+
+      &:hover {
+        background: var(--color-copper);
+        border-color: var(--color-copper);
+        color: #fff;
+      }
+    }
+
+    // ─── Validation ────────────────────────────────────────────
+    .gfield_error .gfield_label { color: #c0392b; }
+    .gfield_error input,
+    .gfield_error select,
+    .gfield_error textarea { border-color: #c0392b; }
+
+    // Inline per-field error ("This field is required.")
+    .gfield_validation_message,
+    .validation_message {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #c0392b;
+      margin: 6px 0 0;
+      padding: 0;
+      background: none;
+      border: none;
+    }
+
+    // Top-of-form error summary ("There was a problem with your submission…")
+    .gform_validation_errors {
+      margin: 0 0 1.25rem;
+      padding: 0.875rem 1rem;
+      background: #fdecea;
+      border-left: 3px solid #c0392b;
+      color: #c0392b;
+      border-radius: 0;
+
+      h2,
+      .gform_submission_error {
+        font-family: var(--font-body);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        line-height: 1.4;
+        letter-spacing: 0;
+        text-transform: none;
+        color: #c0392b;
+        margin: 0;
+        padding: 0;
+
+        .gform-icon { display: none; }
+      }
+
+      a {
+        color: #c0392b;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // ─── Confirmation message (if redirect ever fails) ────────────
+  .gform_confirmation_wrapper,
+  .gform_confirmation_message {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: #2a7d4f;
+    background: #e8f4ed;
+    border-left: 3px solid #2a7d4f;
+    padding: 0.875rem 1rem;
+    margin: 0;
+  }
+}
+
+// ─── Select2 dropdown panel ─────────────────────────────────────
+// Select2 portals its dropdown to <body>, so these rules live outside
+// `.contact-form-wrap`. They re-skin the panel + options to match the
+// theme tokens (white bg, neutral-200 border, copper highlight).
+.select2-container--open {
+  z-index: 1070;
+}
+
+.select2-container--default .select2-dropdown {
+  background: #fff;
+  border: 1px solid var(--neutral-200);
+  border-radius: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  z-index: 1070;
+}
+
+.select2-container--default .select2-results__option {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--color-dark);
+  padding: 0.625rem 1rem;
+}
+
+// Custom scrollbar inside the Select2 results list — slim, theme-matched.
+// Firefox uses scrollbar-width / scrollbar-color; WebKit / Chromium / Edge
+// use the ::-webkit-* pseudo-elements.
+.select2-container--default .select2-results > .select2-results__options {
+  // Firefox
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-dark) transparent;
+
+  // WebKit / Chromium / Edge / Safari
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-dark);
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--color-copper);
+  }
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.select2-container--default .select2-results__option--highlighted {
+  background: var(--neutral-100);
+  color: var(--color-dark);
+}
+
+.select2-container--default .select2-results__option[aria-selected="true"] {
+  background: #fff;
+  color: var(--color-copper);
+  font-weight: 500;
+}

@@ -1,0 +1,34 @@
+// ═══════════════════════════════════════════════════════════════
+// United Rare Earths — Main SCSS Entry
+//
+// Folder layout matches SPINX canonical:
+//   _variables  → design tokens (SCSS vars)
+//   _functions  → SCSS functions (placeholder)
+//   _mixins     → breakpoint helpers + utilities
+//   _custom     → post-Bootstrap container overrides
+//   _layout     → CSS custom properties + reset + typography + section utils
+//   _overrides  → late-stage overrides (placeholder)
+//   sections/   → header / footer / scroll-progress chrome
+//   components/ → all `_cmn-*` reusable blocks
+//   pages/      → per-page entry files (compiled separately)
+//
+// Bootstrap 5.3.3 is loaded as a compiled vendor stylesheet via
+// assets/css/library/bootstrap.min.css (see gulpfile cssVendor task),
+// so it does not need to be @use-d here.
+// ═══════════════════════════════════════════════════════════════
+
+// ─── Foundation ────────────────────────────────────────────────
+@import "variables";
+@import "functions";
+@import "mixins";
+@import "custom";
+@import "layout";
+@import "overrides";
+
+// Component layer is now imported per page in pages/*.scss.
+// Each page entry pulls only the `components/cmn-*` partials it uses.
+
+// ─── Section layer ─────────────────────────────────────────────
+@import "sections/header";
+@import "sections/footer";
+@import "sections/scroll-progress";

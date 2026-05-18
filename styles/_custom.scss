@@ -1,0 +1,13 @@
+// ═══════════════════════════════════════════════════════════════
+// Project overrides (post-Bootstrap)
+// ═══════════════════════════════════════════════════════════════
+
+// Wider site container — bumped from Bootstrap's xxl 1320px to 1450px.
+@media (min-width: 1550px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl { max-width: 1450px; }
+}

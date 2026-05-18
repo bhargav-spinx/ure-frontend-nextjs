@@ -1,0 +1,1398 @@
+@import "../main.scss";
+
+// ─── Components used on this page ──────────────────────────────
+@import "../components/cmn-buttons";
+@import "../components/cmn-banner";
+@import "../components/cmn-capabilities";
+@import "../components/cmn-heavy-re-focus";
+@import "../components/cmn-cta";
+
+// ═══════════════════════════════════════════════════════════════
+// Homepage — Page-Specific Styles
+// ═══════════════════════════════════════════════════════════════
+
+// ─── Hero Banner (homepage overrides — base styles in style.scss) ─
+.cmn-banner {
+  // Homepage: full viewport height, scroll indicator animates
+  &__scroll-line {
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+}
+
+// ─── The Problem Section ───────────────────────────────────────
+.problem-section {
+  padding-block: 96px;
+
+  .problem-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .problem-stack {
+    flex: 0 1 636px;
+    max-width: 636px;
+    min-width: 0;
+  }
+
+  .problem-image {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .problem-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .problem-bar {
+    position: relative;
+    height: 120px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .problem-bar__fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #eae3d9;
+    width: 0;
+    transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .problem-bar__content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    width: calc(100% - 72px);
+  }
+
+  .problem-bar__value {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 1.1;
+    letter-spacing: -1.2px;
+    color: var(--color-dark);
+    white-space: nowrap;
+  }
+
+  .problem-bar__label {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--color-dark);
+    max-width: 360px;
+  }
+
+  .problem-body {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.24px;
+    color: var(--color-dark);
+    margin: 72px 0 0 0;
+  }
+
+  .problem-globe {
+    width: 485px;
+    height: 485px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 1279.98px) {
+    padding-block: 80px;
+
+    .problem-bar__value {
+      font-size: 52px;
+    }
+    .problem-globe {
+      width: 420px;
+      height: 420px;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    padding-block: 64px;
+
+    .problem-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 48px;
+    }
+
+    .problem-stack {
+      flex: 1 1 auto;
+      max-width: 100%;
+    }
+
+    .problem-bar {
+      height: 104px;
+    }
+    .problem-bar__value {
+      font-size: 44px;
+      letter-spacing: -0.88px;
+    }
+    .problem-bar__label {
+      font-size: 15px;
+      max-width: 320px;
+    }
+
+    .problem-body {
+      font-size: 20px;
+      margin-top: 56px;
+    }
+
+    .problem-image {
+      justify-content: center;
+    }
+    .problem-globe {
+      width: 400px;
+      height: 400px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    padding-block: 48px;
+
+    .problem-bar {
+      height: 92px;
+    }
+    .problem-bar__content {
+      padding: 0 16px;
+      gap: 12px;
+    }
+    .problem-bar__value {
+      font-size: 36px;
+      letter-spacing: -0.72px;
+    }
+    .problem-bar__label {
+      font-size: 13px;
+      max-width: 240px;
+      line-height: 1.3;
+    }
+
+    .problem-body {
+      font-size: 18px;
+      margin-top: 40px;
+    }
+
+    .problem-globe {
+      width: 280px;
+      height: 280px;
+    }
+  }
+}
+
+// ─── Separation control point statement (Figma 14834:25476) ────
+.separation-statement {
+  padding: 0 0 calc(var(--section-py) - 60px);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 52px;
+    max-width: 1080px;
+  }
+
+  &__mark {
+    flex-shrink: 0;
+    width: 80px;
+    height: 91px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  &__copy {
+    flex: 1 1 0;
+    min-width: 0;
+    font-family: var(--font-heading);
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--color-dark);
+    margin: 0;
+
+    span {
+      color: var(--color-accent-orange);
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    padding-block: var(--section-py);
+
+    &__inner {
+      gap: 32px;
+    }
+    &__copy {
+      font-size: 36px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    &__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+    &__mark {
+      width: 64px;
+      height: 73px;
+    }
+    &__copy {
+      font-size: 28px;
+    }
+  }
+}
+
+// ─── Who We Are / The Problem (Figma 14822:18484) ─────────────
+.who-we-are-section {
+  padding: var(--section-py) 0;
+}
+
+.who-we-are {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  &__panels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  &__panel {
+    position: relative;
+    height: 612px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    &--text {
+      padding: 40px 32px;
+    }
+  }
+
+  &__panel-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(24, 25, 29, 0.5);
+  }
+
+  &__panel-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--color-copper-light);
+  }
+
+  &__statement {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 0;
+  }
+
+  &__body {
+    display: flex;
+    align-items: stretch;
+    gap: 24px;
+    max-width: 864px;
+    margin-left: auto;
+  }
+
+  &__col {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+
+    p {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.3;
+      color: var(--color-dark);
+      margin: 0;
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    background: var(--neutral-200);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 991.98px) {
+    gap: 40px;
+
+    &__panels {
+      grid-template-columns: 1fr;
+    }
+
+    &__panel {
+      height: 360px;
+    }
+
+    &__body {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    &__divider {
+      width: 100%;
+      height: 1px;
+    }
+
+    &__statement {
+      font-size: clamp(1.375rem, 4vw, 1.875rem);
+    }
+  }
+}
+
+// Capabilities section + cap-card styles now live in the shared
+// component at assets/sass/components/_cmn-capabilities.scss
+// (used by both the home and about pages).
+
+// ─── H2 compact variant (used in multiple sections) ───────────
+
+// ─── Periodic Table ────────────────────────────────────────────
+.ptable-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-sm);
+}
+
+.ptable {
+  display: grid;
+  grid-template-columns: repeat(18, minmax(29px, 1fr));
+  grid-template-rows: repeat(7, 32px) 8px repeat(2, 32px);
+  gap: 2px;
+  min-width: 560px;
+}
+
+.pt-el {
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 1px;
+  cursor: default;
+  transition:
+    background-color 0.25s,
+    border-color 0.25s,
+    transform 0.15s;
+  position: relative;
+
+  &__num {
+    font-family: var(--font-mono);
+    font-size: 7px;
+    color: var(--neutral-500);
+    line-height: 1;
+  }
+
+  &__sym {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-dark);
+    line-height: 1.1;
+  }
+
+  &__name {
+    font-family: var(--font-mono);
+    font-size: 5.5px;
+    color: var(--neutral-500);
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  &--placeholder {
+    background: transparent;
+    border: 1px dashed var(--neutral-300);
+    font-family: var(--font-mono);
+    font-size: 7px;
+    color: var(--neutral-400);
+    letter-spacing: 0;
+  }
+
+  // Rare earth base style (before tab selection)
+  &--re_heavy,
+  &--re_light {
+    border-color: var(--neutral-300);
+  }
+}
+
+// Tab-controlled highlighting — solid fills for visibility
+.ptable[data-active="heavy"] {
+  .pt-el--re_heavy {
+    background: var(--color-copper);
+    border-color: var(--color-copper-dark);
+    .pt-el__sym {
+      color: #fff;
+      font-weight: 700;
+    }
+    .pt-el__num {
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .pt-el__name {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    transform: scale(1.06);
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(184, 115, 51, 0.35);
+  }
+
+  .pt-el--re_light {
+    background: var(--neutral-100);
+    border-color: var(--neutral-200);
+    opacity: 0.4;
+  }
+}
+
+.ptable[data-active="light"] {
+  .pt-el--re_light {
+    background: var(--color-steel);
+    border-color: var(--color-steel-dark);
+    .pt-el__sym {
+      color: #fff;
+      font-weight: 700;
+    }
+    .pt-el__num {
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .pt-el__name {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    transform: scale(1.06);
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(107, 142, 163, 0.35);
+  }
+
+  .pt-el--re_heavy {
+    background: var(--neutral-100);
+    border-color: var(--neutral-200);
+    opacity: 0.4;
+  }
+}
+
+// Tab buttons
+.pt-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pt-tab {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--neutral-300);
+  background: transparent;
+  color: var(--neutral-500);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+
+  &.active,
+  &:hover {
+    border-color: var(--color-copper);
+    color: var(--color-copper);
+    background: rgba(184, 115, 51, 0.06);
+  }
+
+  &[data-group="light"].active,
+  &[data-group="light"]:hover {
+    border-color: var(--color-steel);
+    color: var(--color-steel);
+    background: rgba(107, 142, 163, 0.06);
+  }
+}
+
+// Legend
+.pt-legend {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.pt-legend-item {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--neutral-500);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid;
+    flex-shrink: 0;
+  }
+
+  &--heavy::before {
+    background: var(--color-copper);
+    border-color: var(--color-copper-dark);
+  }
+
+  &--light::before {
+    background: var(--color-steel);
+    border-color: var(--color-steel-dark);
+  }
+
+  &--other::before {
+    background: var(--neutral-100);
+    border-color: var(--neutral-300);
+  }
+}
+
+// .heavy-re-focus styles moved to
+// assets/sass/components/_cmn-heavy-re-focus.scss
+// (used by home + technology pages).
+
+// ─── Recycling Section — dark box layout ──────────────────────
+.recycling-section {
+  padding: var(--space-2xl) 0;
+  overflow: hidden;
+}
+
+.recycling-box {
+  background: var(--color-dark);
+  display: flex;
+  align-items: stretch;
+
+  &__text {
+    padding: clamp(2.5rem, 5vw, 4rem);
+    width: 55%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+
+    h2 {
+      color: var(--color-cream);
+      margin-bottom: var(--space-md);
+    }
+
+    p {
+      color: var(--neutral-300);
+      margin-bottom: var(--space-sm);
+    }
+
+    .eyebrow {
+      color: var(--color-copper-light);
+    }
+  }
+
+  &__img {
+    flex: 1;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    flex-direction: column;
+
+    &__text {
+      width: 100%;
+      padding: var(--space-xl) var(--space-lg);
+    }
+
+    &__img {
+      width: 100%;
+      height: 280px;
+    }
+  }
+}
+
+.h2-compact {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.learn-more-link {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--color-copper);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--color-copper-dark);
+  }
+}
+
+// ─── Supply Chain Infographic (Figma 10858:7415) ──────────────
+$sc-green: #5e8f7c; // Figma "Green/500P" — URE-operated steps + active arcs
+$sc-border: #dcd4ca; // Figma "Beige/300"  — neutral arc/border
+
+.supply-chain-section {
+  overflow: visible;
+}
+
+.supply-chain__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 64px;
+}
+
+.supply-chain__intro {
+  max-width: 524px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  color: var(--color-dark);
+}
+
+.supply-chain__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #7da3a7;
+  display: block;
+  margin-bottom: -12px;
+}
+
+.supply-chain__title {
+  font-family: var(--font-heading);
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1.38px;
+  margin: 0;
+}
+
+.supply-chain__body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.3;
+
+  p {
+    margin-bottom: 24px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.supply-chain__infographic {
+  width: 100%;
+  max-width: 652px;
+  margin-left: auto;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 32px;
+}
+
+.supply-chain__nav {
+  // Arrows column sits to the left of the wheel, vertically centered.
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 41px;
+}
+
+.supply-chain__arrow {
+  width: 41px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: var(--color-dark);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    color: $sc-green;
+  }
+}
+
+.supply-chain__nav-line {
+  width: 48px;
+  height: 1px;
+  background: $sc-border;
+}
+
+.supply-chain__wheel {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-width: 594px;
+  aspect-ratio: 594 / 462;
+  margin-left: auto;
+}
+
+.supply-chain__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+// Dual-line ring:
+//   .sc-arc-bg → thin static rail, always visible behind the progress overlay.
+//   .sc-arc    → constant-width progress overlay. Hidden by default via
+//                stroke-dashoffset = full length, revealed by smoothly easing
+//                the dashoffset to 0 when a state class is added. Width never
+//                changes, so the fill reads as one continuous line — no
+//                stroke-width 1→6 jump partway through the draw.
+
+.sc-arc-bg {
+  fill: none;
+  // Round caps close the tiny seam where neighbouring segments meet (e.g.
+  // seg 4 → seg 5 on the right side). Default butt caps leave a 1–2px
+  // visible gap because each <path> is its own SVG element.
+  stroke-linecap: round;
+}
+
+.sc-arc {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 6;
+
+  // --arc-length is set per-element by JS via getTotalLength() so each
+  // <path> / <line> animates over its own length.
+  stroke-dasharray: var(--arc-length, 9999);
+  stroke-dashoffset: var(--arc-length, 9999);
+
+  // Smooth transition handles the entire fill — same easing on color so the
+  // stroke color and the draw progress feel like one motion.
+  transition:
+    stroke 300ms ease-out,
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Any state class draws the segment in.
+  &.was-active,
+  &.is-completing {
+    stroke-dashoffset: 0;
+  }
+
+  // Per-segment fill colors — is-active and was-active share so the trail
+  // behind the current step reads as one continuous fill.
+  &[data-segment="1"].was-active:not(.is-completing) {
+    stroke: #dcd4ca;
+  }
+  &[data-segment="2"].was-active {
+    stroke: #1a1a1a;
+  }
+  &[data-segment="3"].was-active {
+    stroke: #dcd4ca;
+  }
+  &[data-segment="4"].was-active {
+    stroke: #dcd4ca;
+  }
+  &[data-segment="5"].was-active {
+    stroke: #dcd4ca;
+  }
+  &[data-segment="6"].was-active {
+    stroke: $sc-green;
+  }
+
+  // Closing-loop: 6→1 wrap fills both segments black with the same smooth
+  // dashoffset draw, no width jump.
+  &[data-segment="6"].is-completing {
+    stroke: var(--color-dark);
+  }
+  &[data-segment="6"].is-removing {
+    stroke: #5e8f7c !important;
+    stroke-dashoffset: 0 !important;
+  }
+  &[data-segment="1"].is-completing {
+    stroke-dashoffset: var(--arc-length, 9999);
+  }
+}
+
+.supply-chain__image {
+  position: absolute;
+  left: 31.8%;
+  top: 12.3%;
+  width: 60%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--neutral-100);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 300ms ease-out;
+  }
+}
+
+.sc-node {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  border: 1px solid $sc-border;
+  color: var(--color-dark);
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+  // Figma smart-animate: 300ms ease-out between state changes
+  transition:
+    background-color 300ms ease-out,
+    border-color 300ms ease-out,
+    border-width 300ms ease-out,
+    color 300ms ease-out;
+
+  span {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative; // sit above the inner dot pseudo
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    border: 1px solid transparent;
+    border-radius: 100px;
+  }
+
+  &--ure {
+    background: $sc-green;
+    border-color: $sc-green;
+    color: #fff;
+  }
+
+  // Active state — Figma exact values:
+  //   Non-URE (steps 1/4/5): bg #F8F4EE cream + 6px gray border + dark "N".
+  //                          Inner cream matches page bg, so only the ring
+  //                          + text are visible (per Figma node 10979:26485).
+  //   URE     (steps 2/3/6): bg #F8F4EE cream + 6px dark border + sage 21px
+  //                          inner + white "N".
+  // `.is-active` = current step; `.was-active` = past steps (same visual).
+  &.is-active {
+    span {
+      border-color: #ffffff;
+    }
+  }
+  &.is-active,
+  &.was-active {
+    background: #dcd4ca;
+    color: var(--color-dark);
+  }
+
+  &.is-active.sc-node--ure,
+  &.was-active.sc-node--ure {
+    background: var(--color-dark);
+    color: #fff;
+    border-color: var(--color-dark);
+  }
+
+  // Centre points (% of 588 × 462) — translated by -50%/-50% above
+  &--1 {
+    left: 7.3%;
+    top: 51.1%;
+    border-width: 6px;
+    &.was-active {
+      border-width: 8px;
+    }
+  }
+  &--2 {
+    left: 24%;
+    top: 51.1%;
+    &.was-active {
+      border-width: 8px;
+    }
+  }
+  &--3 {
+    left: 50%;
+    top: 4.5%;
+    &.was-active {
+      border-width: 8px;
+    }
+  }
+  &--4 {
+    left: 93%;
+    top: 22.3%;
+    &.was-active {
+      border-width: 8px;
+      span {
+        background: #dcd4ca;
+      }
+    }
+    &.is-active {
+      span {
+        background: #dcd4ca;
+      }
+    }
+  }
+  &--5 {
+    left: 93%;
+    top: 77.9%;
+    &.was-active {
+      border-width: 8px;
+      span {
+        background: #dcd4ca;
+      }
+    }
+    &.is-active {
+      span {
+        background: #dcd4ca;
+      }
+    }
+  }
+  &--6 {
+    left: 50%;
+    top: 95.5%;
+    &.was-active {
+      border-width: 8px;
+      span {
+        background: #dcd4ca;
+      }
+    }
+  }
+  &--1 {
+    span {
+      background: #dcd4ca;
+    }
+  }
+}
+
+.supply-chain__caption {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  justify-self: end;
+  text-align: center;
+  color: var(--color-dark);
+  width: 445px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: color 300ms ease-out;
+
+  // Sage caption when the active step is URE-operated (steps 2, 3, 6).
+  &.is-ure-active {
+    color: $sc-green;
+  }
+
+  &-title {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.3;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  &-body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.3;
+    margin: 0;
+  }
+}
+
+// ─── Responsive ──
+@media (max-width: 1199.98px) {
+  .supply-chain__layout {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+  .supply-chain__intro {
+    max-width: 100%;
+  }
+  .supply-chain__infographic {
+    max-width: 100%;
+    margin: 0 auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    row-gap: 24px;
+  }
+
+  .supply-chain__title {
+    font-size: 36px;
+    letter-spacing: -1.08px;
+  }
+
+  .supply-chain__wheel {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 540px;
+    margin: 0 auto;
+    @include media-down(sm) {
+      margin-left: -5px;
+    }
+  }
+
+  // Nav bar moves above the wheel and stretches horizontally.
+  .supply-chain__nav {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: auto;
+    flex-direction: row;
+    width: auto;
+    gap: 16px;
+    margin-bottom: 0;
+  }
+  .supply-chain__nav-line {
+    width: 24px;
+    height: 1px;
+  }
+
+  .supply-chain__caption {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .supply-chain__wheel {
+    max-width: 100%;
+  }
+}
+
+// Legacy .sc-nav-btn / .sc-nav-counter removed (replaced by
+// .supply-chain__arrow + caption inside the new circular layout).
+
+// ─── Industries Section ────────────────────────────────────────
+.industries-heading-row {
+  margin-bottom: 8px;
+}
+
+.industries-heading {
+  font-family: var(--font-heading);
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-dark);
+  margin: 0;
+
+  @media (max-width: 991.98px) {
+    font-size: 38px;
+  }
+  @media (max-width: 575.98px) {
+    font-size: 30px;
+  }
+}
+
+.industries-section {
+  .industries-image-panel {
+    position: relative;
+    width: 100%;
+    padding-top: 66.667%; // 3:2 aspect ratio
+    overflow: hidden;
+    background: var(--neutral-100);
+  }
+
+  .ind-panel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--duration-slow) var(--ease-out);
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .industries-list-col {
+    padding-left: 32px;
+  }
+
+  .industries-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .industry-item {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--neutral-400);
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color var(--duration-fast) var(--ease-out);
+
+    &__arrow {
+      color: var(--color-copper);
+      opacity: 0;
+      width: 16px;
+      flex-shrink: 0;
+      font-size: 1rem;
+      transition: opacity var(--duration-fast) var(--ease-out);
+    }
+
+    &:hover,
+    &.active {
+      color: var(--color-copper);
+      .industry-item__arrow {
+        opacity: 1;
+      }
+    }
+  }
+
+  .industries-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 44px;
+
+    &__divider {
+      flex-shrink: 0;
+      width: 1px;
+      align-self: stretch;
+      min-height: 321px;
+      background: var(--neutral-200);
+    }
+
+    &__inner {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 407px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    p {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.3;
+      color: var(--color-dark);
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .industries-list-col {
+      padding-left: 0;
+    }
+    .industries-image-panel {
+      padding-top: 66.667%;
+    }
+    .industries-body {
+      flex-direction: column;
+      gap: 24px;
+      padding-top: var(--space-lg);
+
+      &__divider {
+        width: 100%;
+        height: 1px;
+        min-height: 0;
+        align-self: stretch;
+      }
+
+      &__inner {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+// ─── News Section ──────────────────────────────────────────────
+.cmn-news {
+  .news-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      .news-card__img img,
+      .news-card__img-placeholder {
+        transform: scale(1.03);
+      }
+
+      .news-card__title {
+        color: var(--color-copper-light);
+      }
+
+      .news-card__read-more {
+        gap: 0.5rem;
+      }
+    }
+
+    &__img {
+      overflow: hidden;
+      margin-bottom: var(--space-md);
+      aspect-ratio: 3/2;
+      background-color: var(--neutral-800);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--duration-slow) var(--ease-out);
+      }
+    }
+
+    &__img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        var(--neutral-800) 0%,
+        var(--neutral-700) 100%
+      );
+      transition: transform var(--duration-slow) var(--ease-out);
+    }
+
+    &__date {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--neutral-500);
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+
+    &__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--color-cream);
+      margin-bottom: var(--space-sm);
+      transition: color var(--duration-fast) var(--ease-out);
+    }
+
+    &__read-more {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-copper);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: gap var(--duration-fast) var(--ease-out);
+    }
+  }
+}
+
+// ─── CTA Section (base styles in style.scss) ──────────────────
+
+// ─── Responsive ────────────────────────────────────────────────
+@media (max-width: 991.98px) {
+  .cmn-banner:not(.cmn-banner--inner) {
+    min-height: 85vh;
+    padding-bottom: 3rem;
+  }
+
+  .heavy-re-section__visual {
+    padding: var(--space-sm);
+  }
+
+  .recycling-section__visual {
+    padding: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .cmn-banner:not(.cmn-banner--inner) {
+    min-height: 75vh;
+
+    .display {
+      font-size: 2rem;
+    }
+  }
+
+  .element-grid {
+    max-width: 240px !important;
+  }
+
+  .element-card__symbol {
+    font-size: 2rem !important;
+  }
+}

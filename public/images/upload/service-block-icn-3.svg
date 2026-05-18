@@ -1,0 +1,24 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.15">
+<path d="M0 20H120" stroke="black"/>
+<path d="M0 40H120" stroke="black"/>
+<path d="M0 60H120" stroke="black"/>
+<path d="M0 80H120" stroke="black"/>
+<path d="M0 100H120" stroke="black"/>
+<path d="M20 120L20 -2.98023e-08" stroke="black"/>
+<path d="M40 120L40 -2.98023e-08" stroke="black"/>
+<path d="M60 120L60 -2.98023e-08" stroke="black"/>
+<path d="M80 120L80 -2.98023e-08" stroke="black"/>
+<path d="M100 120L100 -2.98023e-08" stroke="black"/>
+</g>
+<path d="M100 32V42L60 62L20 42V32" stroke="black" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M60 52L60 61" stroke="black" stroke-width="1.5"/>
+<path d="M60 75L60 84" stroke="black" stroke-width="1.5"/>
+<path d="M60 98L60 107" stroke="black" stroke-width="1.5"/>
+<path d="M20 32L60 12L100 32V42L60 62L20 42V32Z" stroke="black" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M33 48.5L20 55V65L60 85L100 65V55L87 48.5" stroke="black" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M33 71.5L20 78V88L60 108L100 88V78L87.5 71.5" stroke="black" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M20 32L60 52.5L100 32" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M20 55L60 75.5L100 55" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M20 78L60 98.5L100 78" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>

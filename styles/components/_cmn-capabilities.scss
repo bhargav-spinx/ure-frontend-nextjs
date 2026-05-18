@@ -1,0 +1,244 @@
+// ═══════════════════════════════════════════════════════════════
+// Capabilities / "What We Do" — Figma 14822:18498
+// Big Separation card on the left, stacked Refining + Recycling on the right.
+// Hover swaps the line graphic for a full-bleed image and reverses text to white.
+// ═══════════════════════════════════════════════════════════════
+
+.capabilities-section {
+  &.section-pad { padding-top: 96px; }
+}
+
+.cap-eyebrow {
+  margin-bottom: 40px;
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--color-steel);
+  }
+}
+
+.cap-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 844fr) minmax(0, 464fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.cap-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cap-card {
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--duration-base) var(--ease-out);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    // URL comes from the inline `--cap-hover` custom property set in PHP on
+    // each `.cap-card`, so swapping artwork doesn't require touching SCSS.
+    background-image: var(--cap-hover);
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--ease-out);
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.78);
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--ease-out);
+    z-index: 1;
+  }
+
+  > * { position: relative; z-index: 2; }
+
+  &__top {
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--color-dark);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  &__icon {
+    color: var(--color-dark);
+    transition: opacity var(--duration-base) var(--ease-out),
+                visibility var(--duration-base) var(--ease-out);
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__bottom {
+    padding: 24px;
+    margin-top: auto;
+  }
+
+  &__body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--color-dark);
+    margin: 0;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  // Big Separation card — graphic centered, copy at bottom
+  &--big {
+    min-height: 600px;
+    align-items: center;
+
+    .cap-card__top {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    .cap-card__icon {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 24px;
+    }
+
+    .cap-card__bottom {
+      width: 100%;
+    }
+
+    .cap-card__body {
+      font-size: 18px;
+      max-width: 750px;
+    }
+  }
+
+  // Smaller stacked cards
+  &--small {
+    flex: 1 1 0;
+    min-height: 0;
+
+    .cap-card__title { font-size: 38px; }
+    .cap-card__body { font-size: 16px; }
+  }
+
+  &:hover {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+
+    &::before, &::after { opacity: 1; }
+
+    .cap-card__title { color: #fff; }
+    .cap-card__body  { color: rgba(255, 255, 255, 0.92); }
+
+    .cap-card__icon {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+.cap-cta {
+  margin-top: 28px;
+}
+
+// ─── Tablet (≤ 991.98px) ──────────────────────────────────────────
+// Single-column stack: Separation on top, Refining + Recycling below.
+@media (max-width: 991.98px) {
+  .capabilities-section.section-pad { padding-top: 72px; }
+
+  .cap-eyebrow { margin-bottom: 28px; }
+
+  .cap-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cap-card--big {
+    min-height: 460px;
+
+    .cap-card__icon {
+      padding: 16px;
+      img { max-width: 140px; height: auto; }
+    }
+
+    .cap-card__body { font-size: 17px; }
+  }
+
+  .cap-card--small {
+    min-height: 280px;
+  }
+}
+
+// ─── Mobile (≤ 575.98px) ──────────────────────────────────────────
+// Tighter padding, smaller heading, scaled icons.
+@media (max-width: 575.98px) {
+  .capabilities-section.section-pad { padding-top: 56px; }
+
+  .cap-eyebrow { margin-bottom: 20px; }
+
+  .cap-grid { gap: 10px; }
+
+  .cap-card {
+    &__top    { padding: 18px; }
+    &__bottom { padding: 18px; }
+    &__title  { font-size: 26px; }
+    &__body   { font-size: 14px; }
+  }
+
+  .cap-card--big {
+    min-height: 360px;
+
+    .cap-card__title { font-size: 28px; }
+    .cap-card__body  { font-size: 15px; }
+
+    .cap-card__icon {
+      padding: 12px;
+      img { max-width: 110px; }
+    }
+  }
+
+  .cap-card--small {
+    min-height: 220px;
+
+    .cap-card__title { font-size: 26px; }
+
+    .cap-card__icon img {
+      max-width: 52px;
+      height: auto;
+    }
+  }
+
+  .cap-cta {
+    margin-top: 20px;
+
+    .btn-ghost-dark { width: 100%; text-align: center; }
+  }
+}

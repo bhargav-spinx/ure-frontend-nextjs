@@ -1,0 +1,16 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.15">
+<path d="M0 20H120" stroke="black"/>
+<path d="M0 40H120" stroke="black"/>
+<path d="M0 60H120" stroke="black"/>
+<path d="M0 80H120" stroke="black"/>
+<path d="M0 100H120" stroke="black"/>
+<path d="M20 120L20 -2.98023e-08" stroke="black"/>
+<path d="M40 120L40 -2.98023e-08" stroke="black"/>
+<path d="M60 120L60 -2.98023e-08" stroke="black"/>
+<path d="M80 120L80 -2.98023e-08" stroke="black"/>
+<path d="M100 120L100 -2.98023e-08" stroke="black"/>
+</g>
+<path d="M59.5036 44.5299C37.6129 44.5299 19.8672 51.2344 19.8672 59.5036C19.8672 67.7729 37.6129 74.4774 59.5036 74.4774C81.3944 74.4774 99.1401 67.7729 99.1401 59.5036C99.1401 51.2344 81.3944 44.5299 59.5036 44.5299ZM44.5299 59.5036C44.5299 81.3944 51.2344 99.1401 59.5036 99.1401C67.7729 99.1401 74.4774 81.3944 74.4774 59.5036C74.4774 37.6129 67.7729 19.8672 59.5036 19.8672C51.2344 19.8672 44.5299 37.6129 44.5299 59.5036Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M59.5036 99.1401C81.3943 99.1401 99.1401 81.3943 99.1401 59.5036C99.1401 37.613 81.3943 19.8672 59.5036 19.8672C37.613 19.8672 19.8672 37.613 19.8672 59.5036C19.8672 81.3943 37.613 99.1401 59.5036 99.1401Z" stroke="black" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

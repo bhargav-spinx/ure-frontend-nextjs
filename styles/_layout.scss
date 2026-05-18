@@ -1,0 +1,379 @@
+// ═══════════════════════════════════════════════════════════════
+// Base — CSS custom properties, reset, typography, section utils
+// ═══════════════════════════════════════════════════════════════
+
+// ─── CSS Custom Properties (runtime tokens) ────────────────────
+:root {
+  // Foundation
+  --color-dark:  #{$color-dark};
+  --color-cream: #{$color-cream};
+
+  // Warm neutral scale
+  --neutral-50:  #{$neutral-50};
+  --neutral-100: #{$neutral-100};
+  --neutral-200: #{$neutral-200};
+  --neutral-300: #{$neutral-300};
+  --neutral-400: #{$neutral-400};
+  --neutral-500: #{$neutral-500};
+  --neutral-600: #{$neutral-600};
+  --neutral-700: #{$neutral-700};
+  --neutral-800: #{$neutral-800};
+  --neutral-900: #{$neutral-900};
+  --neutral-950: #{$neutral-950};
+
+  // Accents
+  --color-copper:       #{$color-copper};
+  --color-copper-light: #{$color-copper-light};
+  --color-copper-dark:  #{$color-copper-dark};
+  --color-steel:        #{$color-steel};
+  --color-steel-light:  #{$color-steel-light};
+  --color-steel-dark:   #{$color-steel-dark};
+
+  // Functional
+  --color-text-dark:    #{$color-text-dark};
+  --color-text-light:   #{$color-text-light};
+  --color-text-muted:   #{$color-text-muted};
+  --color-border-light: #{$color-border-light};
+  --color-border-dark:  #{$color-border-dark};
+
+  // Typography
+  --font-heading: #{$font-heading};
+  --font-body:    #{$font-body};
+  --font-mono:    #{$font-mono};
+
+  // Spacing
+  --space-xs:  #{$space-xs};
+  --space-sm:  #{$space-sm};
+  --space-md:  #{$space-md};
+  --space-lg:  #{$space-lg};
+  --space-xl:  #{$space-xl};
+  --space-2xl: #{$space-2xl};
+  --space-3xl: #{$space-3xl};
+  --space-4xl: #{$space-4xl};
+
+  // Section padding
+  --section-py:    #{$section-py};
+  --section-py-sm: #{$section-py-sm};
+
+  // Transitions
+  --ease-out:       #{$ease-out};
+  --ease-in-out:    #{$ease-in-out};
+  --duration-fast:  #{$duration-fast};
+  --duration-base:  #{$duration-base};
+  --duration-slow:  #{$duration-slow};
+
+  // Layout
+  --header-height: #{$header-height};
+
+  // Figma accent tokens
+  --color-eyebrow-teal:  #{$color-eyebrow-teal};
+  --color-accent-orange: #{$color-accent-orange};
+}
+
+// ─── Base Reset ────────────────────────────────────────────────
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--color-text-dark);
+  background-color: var(--color-cream);
+  // `overflow-x: hidden` implies overflow-y: auto, which creates a
+  // scroll container and traps position:sticky inside it. `clip`
+  // suppresses the scrollbar on that axis without creating a scroll
+  // context, so sticky elements still attach to the viewport.
+  overflow-x: clip;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-main { flex: 1 0 auto; }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+// ─── Typography ────────────────────────────────────────────────
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+  color: inherit;
+}
+
+h1, .h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em; }
+h2, .h2 { font-size: clamp(2rem, 4vw, 3.5rem);   line-height: 1.1; }
+h3, .h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; }
+h4, .h4 { font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.3; }
+h5, .h5 { font-size: 1.125rem; line-height: 1.4; }
+h6, .h6 { font-size: 1rem;     line-height: 1.5; }
+
+p {
+  margin-bottom: var(--space-sm);
+  &:last-child { margin-bottom: 0; }
+}
+
+.display {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+}
+
+.text-large { font-size: clamp(1rem, 1.25vw, 1.125rem); line-height: 1.35; }
+.text-small { font-size: 0.875rem; line-height: 1.35; }
+.text-12 { font-size: 0.75rem; }
+.text-14 { font-size: 0.875rem; }
+.text-16 { font-size: 1rem; }
+.text-18 { font-size: 1.125rem; }
+.text-20 { font-size: 1.25rem; }
+
+// Eyebrow
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-copper);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.on-dark .eyebrow,
+.bg-dark .eyebrow { color: var(--color-copper-light); }
+
+// Lead / mission text
+.lead-statement {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--color-text-dark);
+}
+
+.bg-dark .lead-statement { color: var(--color-cream); }
+
+// Pull quote
+.pull-quote {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.5;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-copper);
+  border-left: 3px solid var(--color-copper);
+  padding-left: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+// Stat number
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-copper);
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+.bg-dark .stat-label { color: var(--neutral-300); }
+
+// Colour utility classes
+.copper-text { color: var(--color-copper); }
+.blue-text   { color: var(--color-steel); }
+.cream-text  { color: var(--color-cream); }
+.muted-text  { color: var(--color-text-muted); }
+
+// Step number
+.step-number {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--color-copper);
+}
+
+// ─── Section System ────────────────────────────────────────────
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-pad    { padding-top: var(--section-py);    padding-bottom: var(--section-py); }
+.section-pad-sm { padding-top: var(--section-py-sm); padding-bottom: var(--section-py-sm); }
+
+// ─── Background variants ───────────────────────────────────────
+.bg-dark {
+  background-color: var(--color-dark);
+  color: var(--color-cream);
+
+  h1, h2, h3, h4, h5, h6 { color: var(--color-cream); }
+  p { color: var(--neutral-200); }
+  a:hover { color: var(--color-copper-light); }
+}
+
+.bg-cream {
+  background-color: var(--color-cream);
+  color: var(--color-text-dark);
+
+  .industry-card {
+    border-color: var(--neutral-200) !important;
+
+    &__icon  { color: var(--color-copper); }
+    &__title { color: var(--color-dark); }
+    &__desc  { color: var(--neutral-600); }
+
+    &:hover { border-color: var(--color-copper) !important; }
+  }
+
+  .news-card {
+    &__title { color: var(--color-dark); }
+    &__img-placeholder {
+      background: linear-gradient(135deg, var(--neutral-200) 0%, var(--neutral-100) 100%);
+    }
+    &:hover .news-card__title { color: var(--color-copper); }
+  }
+}
+
+.bg-900 {
+  background-color: var(--neutral-900);
+  color: var(--color-cream);
+
+  h1, h2, h3, h4, h5, h6 { color: var(--color-cream); }
+  p { color: var(--neutral-200); }
+}
+
+.bg-800 {
+  background-color: var(--neutral-800);
+  color: var(--color-cream);
+}
+
+// ─── Divider ───────────────────────────────────────────────────
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--neutral-100);
+
+  .bg-dark & { background-color: var(--neutral-800); }
+}
+
+// ─── AOS Custom Animations ─────────────────────────────────────
+[data-aos="custom-fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition-property: opacity, transform;
+
+  &.aos-animate { opacity: 1; transform: translateY(0); }
+}
+
+[data-aos="slide-up-custom"] {
+  opacity: 0;
+  transform: translateY(100%);
+  transition-property: opacity, transform;
+
+  &.aos-animate { opacity: 1; transform: translateY(0); }
+}
+
+[data-aos="fade-in"] {
+  opacity: 0;
+  transition-property: opacity;
+  &.aos-animate { opacity: 1; }
+}
+
+[data-aos="scale-in"] {
+  opacity: 0;
+  transform: scale(0.95);
+  transition-property: opacity, transform;
+  &.aos-animate { opacity: 1; transform: scale(1); }
+}
+
+// ─── Selection ─────────────────────────────────────────────────
+::selection {
+  background-color: var(--color-copper);
+  color: #fff;
+}
+
+// ─── Scrollbar ─────────────────────────────────────────────────
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-600);
+  border-radius: 3px;
+  &:hover { background: var(--neutral-500); }
+}
+
+// ─── Responsive Utilities ──────────────────────────────────────
+@include media-down(lg) {
+  :root {
+    --header-height: 64px;
+    --section-py: clamp(3rem, 6vw, 5rem);
+  }
+}
+
+@include media-down(md) {
+  :root {
+    --section-py: clamp(2.5rem, 5vw, 4rem);
+  }
+}
+
+//Loader
+.loading {
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    background: rgba(255, 255, 255, 0.8);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 9991;
+  }
+
+  &:after {
+    content: "";
+    background: url("/images/loader-new.gif") no-repeat center center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    display: block;
+    z-index: 9999;
+    background-size: 50px;
+    transform: translate(-50%, -50%);
+    right: 0;
+  }
+}

@@ -1,0 +1,96 @@
+// ═══════════════════════════════════════════════════════════════
+// Common CTA Section — Figma 14822:18557
+// Dark hero with full-bleed background image and a radial vignette.
+// ═══════════════════════════════════════════════════════════════
+
+.cmn-cta {
+  position: relative;
+  background: var(--color-dark);
+  overflow: hidden;
+  min-height: 650px;
+  padding-bottom: 36px;
+  display: flex;
+  align-items: flex-end;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.70;
+    z-index: 0;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 36% 35%, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 0.70) 75%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.10) 0%, rgba(26, 26, 26, 0.30) 100%);
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  &__headline {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4.5vw, 60px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0;
+    max-width: 564px;
+  }
+
+  &__side {
+    max-width: 522px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+
+    p {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.3;
+      color: #fff;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 1199.98px) {
+    padding-block: 96px 48px;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  @media (max-width: 991.98px) {
+    &__inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 32px;
+    }
+
+    &__headline { max-width: 100%; }
+    &__side { max-width: 100%; }
+  }
+
+  @media (max-width: 575.98px) {
+    padding-block: 64px 40px;
+    aspect-ratio: 4 / 5;
+
+    &__inner { gap: 24px; }
+  }
+}

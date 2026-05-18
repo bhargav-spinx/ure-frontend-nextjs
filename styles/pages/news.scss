@@ -1,0 +1,268 @@
+@import "../main.scss";
+
+// ─── Components used on this page ──────────────────────────────
+@import "../components/cmn-buttons";
+@import "../components/cmn-cta";
+@import "../components/cmn-news";
+
+// ═══════════════════════════════════════════════════════════════
+// News Page — Styles
+// ═══════════════════════════════════════════════════════════════
+
+// ─── Page Header ───────────────────────────────────────────────
+.news-page-header {
+  padding-top: calc(var(--header-height) + var(--section-py-sm));
+  padding-bottom: 0;
+
+  .news-page-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--color-dark);
+    margin-bottom: 0;
+  }
+}
+
+// ─── Listing section ───────────────────────────────────────────
+.news-listing-section {
+  padding-top: 24px;
+}
+
+// ─── Featured card ─────────────────────────────────────────────
+.news-featured-card {
+  background: var(--color-dark);
+  padding: 24px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-xl);
+    border-top: 1px solid rgba(233, 165, 76, 0.2);
+    padding-top: 32px;
+  }
+
+  &__date {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #E9A54C;
+    flex: 0 0 110px;
+    display: block;
+    margin-bottom: 0;
+  }
+
+  &__title {
+    font-size: clamp(1.375rem, 2.5vw, 2.25rem);
+    line-height: 1.2;
+    color: #E9A54C;
+    flex: 0 0 auto;
+    width: min(600px, 55%);
+    margin-bottom: 0;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--duration-fast) var(--ease-out);
+
+      &:hover {
+        color: rgba(233, 165, 76, 0.7);
+      }
+    }
+  }
+}
+
+// ─── Text-only grid ────────────────────────────────────────────
+.news-text-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.news-text-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: var(--space-md) var(--space-md) var(--space-md) 0;
+  border-top: 1px solid var(--neutral-200);
+
+  &:hover {
+    .news-text-item__title {
+      color: var(--color-copper);
+    }
+  }
+
+  &__date {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--neutral-500);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--color-dark);
+    margin-bottom: 0;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+}
+
+// ─── Pagination ────────────────────────────────────────────────
+// Figma: Pagination button group (1115:69411). The WordPress markup
+// (`numeric_posts_nav()` in inc/spinx-functions.php) outputs flat
+// `.page-numbers` anchors plus `.prev` / `.next` controls. Borders
+// are drawn so every cell contributes one shared 1px divider.
+#news-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+
+  .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    min-width: 40px;
+    padding: 0 8px;
+    background: var(--neutral-50);
+    color: var(--color-dark);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    border-top: 1px solid var(--neutral-200);
+    border-bottom: 1px solid var(--neutral-200);
+    border-right: 1px solid var(--neutral-200);
+    transition: background var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+
+    // Figma hover (5026:135500): background swaps to Gray/50.
+    &:hover {
+      background: #F9FAFB;
+      color: var(--color-dark);
+    }
+
+    &.current {
+      background: var(--color-dark);
+      color: #fff;
+      cursor: default;
+      pointer-events: none;
+      border-top-color: var(--color-dark);
+      border-bottom-color: var(--color-dark);
+    }
+
+    &.dots {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  // Prev / Next get a full surrounding border so they read as
+  // self-contained buttons (per Figma "Pagination button group base").
+  .prev,
+  .next {
+    gap: 8px;
+    padding: 0 16px;
+    border-left: 1px solid var(--neutral-200);
+
+    &:hover {
+      background: #F9FAFB;
+    }
+
+    // Arrow icons rendered via SVG mask so they pick up `currentColor`
+    // and inherit hover/focus styling from the anchor.
+    &::before,
+    &::after {
+      content: "";
+      flex: 0 0 20px;
+      width: 20px;
+      height: 20px;
+      background-color: currentColor;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+    }
+  }
+
+  .prev::before {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M15.833 10H4.167M4.167 10l5-5M4.167 10l5 5'/></svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M15.833 10H4.167M4.167 10l5-5M4.167 10l5 5'/></svg>");
+  }
+
+  .prev::after {
+    display: none;
+  }
+
+  .next::after {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M4.167 10h11.666M10.833 5l5 5-5 5'/></svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M4.167 10h11.666M10.833 5l5 5-5 5'/></svg>");
+  }
+
+  .next::before {
+    display: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .news-text-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .news-text-item {
+    padding-right: 0;
+  }
+
+  .news-featured-card {
+    padding: var(--space-md);
+
+    &__row {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    &__date {
+      flex: none;
+    }
+
+    &__title {
+      width: 100%;
+    }
+  }
+
+  #news-pagination {
+    .page-numbers {
+      height: 32px;
+      min-width: 32px;
+      font-size: 13px;
+    }
+
+    .prev,
+    .next {
+      gap: 6px;
+      padding: 0 10px;
+
+      &::before,
+      &::after {
+        flex: 0 0 16px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

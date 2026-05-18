@@ -1,0 +1,36 @@
+// ═══════════════════════════════════════════════════════════════
+// Common news text item — .news-text-item
+// (Layout/spacing for the news grid is in pages/news.scss;
+//  this file holds the base card styling so it's reusable.)
+// ═══════════════════════════════════════════════════════════════
+
+.news-text-item {
+  display: block;
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--neutral-200);
+  transition: color var(--duration-fast) var(--ease-out);
+  color: var(--color-text-dark);
+
+  &__date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
+    line-height: 1.3;
+    font-weight: 500;
+    margin: 0;
+    color: inherit;
+  }
+
+  &:hover {
+    color: var(--color-copper);
+  }
+}
