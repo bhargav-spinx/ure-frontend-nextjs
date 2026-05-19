@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import { useEffect, useState } from "react";
 import SiteLogo from "@/app/components/shared/SiteLogo";
 
@@ -13,44 +13,38 @@ const NAV = [
   { label: "Contact",    href: "/contact",    key: "contact" },
 ];
 
-// Hero-driven routes that must ALWAYS render the dark/transparent header.
-// Checked first to short-circuit any ambiguous usePathname() output at
-// static prerender time (where the hook can return values the news-post
-// regex below would otherwise classify as light).
-const DARK_HEADER_PATHS = new Set([
-  "/", "/about", "/technology", "/market",
+// Top-level segments (top-of-tree route segment name) that must render the
+// dark/transparent header.
+const DARK_SEGMENTS = new Set(["about", "technology", "market"]);
+
+// Top-level segments that render the light header.
+const LIGHT_SEGMENTS = new Set([
+  "contact", "news", "privacy", "do-not-sell-my-info", "thank-you",
 ]);
 
-// Routes that get the light header variant (dark wordmark on cream/white bg).
-const LIGHT_HEADER_PATHS = new Set([
-  "/contact",
-  "/news",
-  "/privacy",
-  "/do-not-sell-my-info",
-  "/thank-you",
-]);
-
-// Top-level reserved slugs — any other single-segment path is a news post
-// (root-slug routing). News posts use the light header.
-const RESERVED_SLUGS = new Set([
-  "about", "contact", "do-not-sell-my-info", "market", "news",
-  "privacy", "technology", "thank-you",
-]);
-
-function isLightHeader(pathname: string): boolean {
-  if (DARK_HEADER_PATHS.has(pathname)) return false;
-  if (LIGHT_HEADER_PATHS.has(pathname)) return true;
-  if (pathname.startsWith("/news/")) return true; // /news/p/<n>
-  // /<slug> root-level news post (not one of the reserved top-level routes).
-  const m = pathname.match(/^\/([^/]+)\/?$/);
-  return Boolean(m && !RESERVED_SLUGS.has(m[1]));
+// useSelectedLayoutSegment() returns:
+//   null    → root `/` (home) — dark
+//   "about" → /about — dark
+//   "news"  → /news, /news/p/<n> — light
+//   "<news-post-slug>" → /<slug> root-routed news post — light
+//
+// We use this instead of usePathname() because the segment hook is purpose-
+// built for layouts and is stable at static prerender time, whereas
+// usePathname() can return Next-internal placeholders for `/` that the
+// news-post regex would otherwise misclassify as light.
+function isLightHeader(segment: string | null): boolean {
+  if (segment === null) return false;            // / (home)
+  if (DARK_SEGMENTS.has(segment))  return false; // about, technology, market
+  if (LIGHT_SEGMENTS.has(segment)) return true;  // contact, news, etc.
+  return true;                                    // anything else = news post slug
 }
 
 export default function Header() {
-  // `||` (not `??`) so we also catch `""` — Next returns an empty string for
-  // the `/` route during production SSR, which would slip past `??` and break
-  // the DARK_HEADER_PATHS lookup below.
+  // Pathname is still used for nav active-link highlighting (works fine for
+  // that since `/about === /about` matches). The header light/dark variant
+  // uses useSelectedLayoutSegment() — SSR-stable, no regex traps.
   const pathname = usePathname() || "/";
+  const segment  = useSelectedLayoutSegment();
   const [open, setOpen] = useState(false);
 
   // Close offcanvas on route change.
@@ -65,7 +59,7 @@ export default function Header() {
     }
   }, [open]);
 
-  const isLight = isLightHeader(pathname);
+  const isLight = isLightHeader(segment);
 
   return (
     <header className={`site-header${isLight ? " site-header--light" : ""}`} role="banner">
