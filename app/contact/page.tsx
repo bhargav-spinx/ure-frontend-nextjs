@@ -49,8 +49,8 @@ export default async function ContactPage() {
   const giLabel     = info?.gi_label     ?? FALLBACK.gi_label;
   const giEmail     = info?.gi_email     ?? FALLBACK.gi_email;
 
-  // Fetch the GF schema for the form_id chosen in ACF (defaults to 3).
-  const formId = form?.form_id && Number(form.form_id) > 0 ? Number(form.form_id) : 3;
+  // Fetch the GF schema for the form_id chosen in ACF (defaults to 1).
+  const formId = form?.form_id && Number(form.form_id) > 0 ? Number(form.form_id) : 1;
   const gfForm = await getGravityForm(formId);
 
   return (
