@@ -13,9 +13,15 @@ const NAV = [
   { label: "Contact",    href: "/contact",    key: "contact" },
 ];
 
+// Hero-driven routes that must ALWAYS render the dark/transparent header.
+// Checked first to short-circuit any ambiguous usePathname() output at
+// static prerender time (where the hook can return values the news-post
+// regex below would otherwise classify as light).
+const DARK_HEADER_PATHS = new Set([
+  "/", "/about", "/technology", "/market",
+]);
+
 // Routes that get the light header variant (dark wordmark on cream/white bg).
-// Everything else (home, about, technology, market) stays on the transparent
-// dark variant.
 const LIGHT_HEADER_PATHS = new Set([
   "/contact",
   "/news",
@@ -32,6 +38,7 @@ const RESERVED_SLUGS = new Set([
 ]);
 
 function isLightHeader(pathname: string): boolean {
+  if (DARK_HEADER_PATHS.has(pathname)) return false;
   if (LIGHT_HEADER_PATHS.has(pathname)) return true;
   if (pathname.startsWith("/news/")) return true; // /news/p/<n>
   // /<slug> root-level news post (not one of the reserved top-level routes).
