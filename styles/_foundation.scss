@@ -1,0 +1,15 @@
+// ═══════════════════════════════════════════════════════════════
+// Foundation — variables, functions, mixins ONLY.
+//
+// Imported by each per-page SCSS so $vars and @include mixins resolve
+// at compile time. These partials emit ZERO CSS output, so importing
+// from multiple pages does not duplicate any rules in the bundle.
+//
+// The CSS-output layers (_layout, _custom, _overrides, sections/*)
+// live in `main.scss` and are loaded ONCE by app/layout.tsx — never
+// from per-page entries.
+// ═══════════════════════════════════════════════════════════════
+
+@import "variables";
+@import "functions";
+@import "mixins";
