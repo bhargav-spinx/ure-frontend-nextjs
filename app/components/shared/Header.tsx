@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useSelectedLayoutSegment } from "next/navigation";
-import { useEffect, useState } from "react";
-import SiteLogo from "@/app/components/shared/SiteLogo";
+import { useEffect, useState, type ReactNode } from "react";
 
 const NAV = [
   { label: "About",      href: "/about",      key: "about" },
@@ -39,7 +38,7 @@ function isLightHeader(segment: string | null): boolean {
   return true;                                    // anything else = news post slug
 }
 
-export default function Header() {
+export default function Header({ logoSlot }: { logoSlot: ReactNode }) {
   // Pathname is still used for nav active-link highlighting (works fine for
   // that since `/about === /about` matches). The header light/dark variant
   // uses useSelectedLayoutSegment() — SSR-stable, no regex traps.
@@ -66,7 +65,7 @@ export default function Header() {
       <div className="container">
         <nav className="navbar navbar-expand-lg p-0 justify-content-between">
           <Link href="/" className="navbar-brand p-0" aria-label="United Rare Earths">
-            <SiteLogo />
+            {logoSlot}
           </Link>
 
           <div className="menu-wrapper">

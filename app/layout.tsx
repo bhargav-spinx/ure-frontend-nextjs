@@ -6,6 +6,11 @@ import "@/styles/main.scss";
 
 import Header from "@/app/components/shared/Header";
 import Footer from "@/app/components/shared/Footer";
+import InlineSvg from "@/app/components/shared/InlineSvg";
+import { getSiteSettings } from "@/app/lib/wp/queries";
+
+const FALLBACK_HEADER_LOGO = "/images/upload/ure-logo.svg";
+const FALLBACK_FOOTER_LOGO = "/images/upload/footer-logo.svg";
 import AOSProvider from "@/app/components/providers/AOSProvider";
 import ScrollProgress from "@/app/components/providers/ScrollProgress";
 import HeaderScrollClass from "@/app/components/providers/HeaderScrollClass";
@@ -45,7 +50,10 @@ export const viewport: Viewport = {
   themeColor: "#c75a1a",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const settings = await getSiteSettings();
+  const headerLogoSrc = settings.header_logo?.url || FALLBACK_HEADER_LOGO;
+  const footerLogoSrc = settings.footer_logo?.url || FALLBACK_FOOTER_LOGO;
   return (
     <html lang="en">
       <head>
@@ -58,12 +66,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ScrollProgress />
-        <Header />
+        <Header
+          logoSlot={
+            <InlineSvg src={headerLogoSrc} className="site-logo" label="United Rare Earths" />
+          }
+        />
         <HeaderScrollClass />
         <SmoothAnchors />
         <AOSProvider />
         <main className="site-main" role="main">{children}</main>
-        <Footer />
+        <Footer logoSrc={footerLogoSrc} />
       </body>
     </html>
   );

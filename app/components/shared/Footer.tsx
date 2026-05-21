@@ -1,6 +1,7 @@
 import Link from "next/link";
+import InlineSvg from "@/app/components/shared/InlineSvg";
 
-export default function Footer() {
+export default function Footer({ logoSrc }: { logoSrc: string }) {
   return (
     <footer className="site-footer">
       <div className="container">
@@ -18,7 +19,7 @@ export default function Footer() {
             </div>
           </div>
           <Link className="site-footer__brand" href="/" aria-label="Independence through infrastructure">
-            <img src="/images/upload/footer-logo.svg" alt="" width={80} height={90} />
+            <InlineSvg src={logoSrc} className="site-footer__logo" label="United Rare Earths" />
           </Link>
         </div>
 

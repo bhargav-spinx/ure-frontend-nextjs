@@ -3,6 +3,7 @@ import { wpFetch, wpFetchWithMeta } from "./client";
 import type {
   AcfImage,
   GravityForm,
+  SiteSettings,
   UrePageResponse,
   UrePostResponse,
   WpPage,
@@ -12,7 +13,19 @@ import type {
 export const tags = {
   posts: "wp:posts",
   page: (slug: string) => `wp:page:${slug}`,
+  options: "wp:options",
 };
+
+/* ============================================================
+ * Site Settings (ACF Options — global logos)
+ * ============================================================ */
+export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
+  const data = await wpFetch<SiteSettings>("ure/v1/options", {
+    tags: [tags.options],
+    revalidate: 300, // logos rarely change; webhook busts wp:options on save
+  });
+  return data ?? { header_logo: null, footer_logo: null };
+});
 
 /* ============================================================
  * Pages

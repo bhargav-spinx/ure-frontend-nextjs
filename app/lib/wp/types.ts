@@ -5,6 +5,12 @@ export type AcfImage = {
   height?: number;
 } | null;
 
+/** Site-wide ACF Options (logos) — from /ure/v1/options. */
+export type SiteSettings = {
+  header_logo: AcfImage;
+  footer_logo: AcfImage;
+};
+
 export type AcfLink = {
   url: string;
   title: string;

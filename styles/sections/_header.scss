@@ -34,8 +34,23 @@
     --logo-text-color: #ffffff;
   }
 
-  .site-logo__shield path   { fill: var(--logo-shield-color); }
-  .site-logo__wordmark path { fill: var(--logo-text-color); }
+  // Inlined-SVG logo (admin-uploaded or bundled fallback). The brand SVG uses
+  // fill="#E9A54C" for the shield and fill="white" for the wordmark; a CSS
+  // `fill` rule overrides the SVG's presentation attribute, so the wordmark
+  // flips per header variant while the shield keeps its branded color.
+  // The `__shield` / `__wordmark` group selectors are kept for any logo that
+  // ships those classes.
+  .site-logo__shield path,
+  .site-logo svg path[fill="#E9A54C" i] { fill: var(--logo-shield-color); }
+
+  .site-logo__wordmark path,
+  .site-logo svg path[fill="white" i],
+  .site-logo svg path[fill="#fff" i],
+  .site-logo svg path[fill="#ffffff" i] { fill: var(--logo-text-color); }
+
+  // The inlined SVG sits in a <span class="site-logo">; size it to the span.
+  .site-logo svg { display: block; width: 100%; height: auto; }
+
   transition: height var(--duration-base) var(--ease-out);
   pointer-events: none; // let the hero/page handle pointer events outside nav
 
@@ -90,11 +105,18 @@
     width: 100%;
   }
 
-  .navbar-brand,
-  .site-logo {
+  .navbar-brand {
     max-width: 180px;
     width: auto;
     display: block;
+  }
+
+  // .site-logo is now a <span> wrapping an inlined <svg>; give it the logo's
+  // natural width so the svg (width:100%) renders at the right size.
+  .site-logo {
+    display: block;
+    width: 180px;
+    max-width: 100%;
   }
 
   // Keep the site logo visible above the offcanvas backdrop on mobile
